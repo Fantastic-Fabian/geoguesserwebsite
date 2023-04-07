@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="mystyle.css">
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-    crossorigin=""/>
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-    crossorigin=""></script>
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    
 </head>
 
 
 <body>
+    <link rel="prefetch" id="prefetcher" href="img/test2.jpeg">
     <h1 id="titletext">Geoguesser Karlsruhe</h1>
     <div id="controls">
         <p id="punktetext">Punkte:0000</p>
@@ -34,6 +34,7 @@
     </div>
     <div id="gallery">
         <a-scene embedded>
+            <a-asset></a-asset>
             <a-sky id="my-image" src="img/test2.jpeg" rotation="0 -20 0"></a-sky>
         </a-scene>
     </div>
@@ -77,7 +78,15 @@
     ["TCBredeney.png", [51.408983, 6.984084]],
     ["Waldseekreuzung.png", [51.407358, 6.985156]],
     ["Waldspielplatz.png", [51.409692, 6.987618]],
-    ["Wasserturm.png", [51.408080, 6.988493]]];
+    ["Wasserturm.png", [51.408080, 6.988493]],
+    ["Assey.png", [51.410411, 6.974567]],
+    ["BredeneyerFriedhof.png", [51.412776, 6.979243]],
+    ["Bruckerholt.png", [51.411245, 6.977795]],
+    ["Funkestiftung.png", [51.402213, 6.983027]],
+    ["Pferdestall.png", [51.409767, 6.968921]],
+    ["Waldeingangbruckerholt.png", [51.405348, 6.984070]],
+    ["Westerwald.png", [51.406592, 6.982567]],
+    ["Wetteramt.png", [51.407005, 6.965947]]];
 
     var challenges = [challengeskarlsruhe, challengesessen];
 
@@ -92,6 +101,7 @@
     const titletext = document.getElementById("titletext");
     const popup = document.getElementById("popup");
     const popuptext = document.getElementById("popuptext");
+    const prefetcher = document.getElementById("prefetcher");
 
     //Stadt anpassen
     titletext.innerHTML = "Geoguesser " + stadtname[stadtindex];
@@ -153,6 +163,9 @@
         myimage.setAttribute('src', "img/" + stadtname[stadtindex] + "/" + challenges[stadtindex][currentchallenge][0]);
         abstandtext.innerHTML = "";
         buttonnext.innerHTML = "Überspringen";
+        if (currentchallenge+1<challenges[stadtindex].length){
+            prefetcher.setAttribute("src", "img/" + stadtname[stadtindex] + "/" + challenges[stadtindex][currentchallenge+1][0])
+        }
     }
     function restart() {
         challenges[stadtindex] = shuffle(challenges[stadtindex]);
@@ -223,10 +236,10 @@
         return array;
     }
     function showPopup() {
-        popuptext.innerHTML = "Herzlichen Glückwunsch, du hast alle " 
-        + challenges[stadtindex].length + " Orte gefunden. Dabei hast du " + punkte + 
-        " Punkte gesammelt. Insgesamt beträgt deine totale Abweichung "+ totaldistance + "m. Also " 
-        + Math.round(totaldistance/challenges[stadtindex].length) + "m im Durchschnitt.";
+        popuptext.innerHTML = "Herzlichen Glückwunsch, du hast alle "
+            + challenges[stadtindex].length + " Orte gefunden. Dabei hast du " + punkte +
+            " Punkte gesammelt. Insgesamt beträgt deine totale Abweichung " + totaldistance + "m. Also "
+            + Math.round(totaldistance / challenges[stadtindex].length) + "m im Durchschnitt.";
         popup.style.display = "block";
     }
     //DebugFunktionen:
