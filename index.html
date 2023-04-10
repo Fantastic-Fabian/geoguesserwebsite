@@ -97,11 +97,15 @@
     ["Pferdestall.png", [51.409767, 6.968921]],
     ["Waldeingangbruckerholt.png", [51.405348, 6.984070]],
     ["Westerwald.png", [51.406592, 6.982567]],
-    ["Wetteramt.png", [51.407005, 6.965947]]];
+    ["Wetteramt.png", [51.407005, 6.965947]],
+    ["Heisiwald2.png", [51.391341,6.989523]],
+    ["Heisiwald3.png", [51.393337,6.987947]],
+    ["Heisiwaldanfang.png", [51.393253,6.986556]],
+    ["VillaVue.png", [51.392172,6.993479]]];
 
     var challenges = [challengeskarlsruhe, challengesessen];
     challenges[stadtindex] = shuffle(challenges[stadtindex]);
-
+    
     //displays
     var markers = [];
     var verbindung = null;
@@ -133,7 +137,7 @@
 
     // Adding layer to the map
     map.addLayer(layer);
-    
+
     updateChallenge();
 
     //click event
