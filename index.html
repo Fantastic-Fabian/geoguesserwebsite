@@ -186,7 +186,7 @@
         corrdscorr = challenges[stadtindex][currentchallenge][1];
         myimage.setAttribute('src', "img/" + stadtname[stadtindex] + "/" + challenges[stadtindex][currentchallenge][0]);
         abstandtext.innerHTML = "";
-        buttonnext.innerHTML = "Überspringen (" + (currentchallenge +2) +"/"+challenges[stadtindex].length+")";
+        buttonnext.innerHTML = "Überspringen";
         if (currentchallenge + 1 > challenges[stadtindex].length) {
             prefetcher.setAttribute("src", "img/" + stadtname[stadtindex] + "/" + challenges[stadtindex][currentchallenge + 1][0])
         }
