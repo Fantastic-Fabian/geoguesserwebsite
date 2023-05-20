@@ -14,7 +14,7 @@ body {
 #gallery, #buttonrestart {
   width: 100%;
   max-width: 100vh;
-  max-width: min(100vh, 90vw);
+  max-width: min(100vh, 85vw);
   margin: 0 auto;
 }
 

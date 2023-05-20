@@ -163,7 +163,10 @@
             totaldistance += distance;
             punkteaktualisieren()
             abstandtext.innerHTML = "Abstand:" + distance + "m";
-            buttonnext.innerHTML = "Weiter";
+            buttonnext.innerHTML = "Weiter (" + (currentchallenge +2) +"/"+challenges[stadtindex].length+")";
+            if(currentchallenge +2 > challenges[stadtindex].length){
+                buttonnext.innerHTML = "Beenden"
+            }
             notguessedyet = false;
             solvedchallenges += 1;
         }
@@ -183,9 +186,12 @@
         corrdscorr = challenges[stadtindex][currentchallenge][1];
         myimage.setAttribute('src', "img/" + stadtname[stadtindex] + "/" + challenges[stadtindex][currentchallenge][0]);
         abstandtext.innerHTML = "";
-        buttonnext.innerHTML = "Überspringen";
-        if (currentchallenge + 1 < challenges[stadtindex].length) {
+        buttonnext.innerHTML = "Überspringen (" + (currentchallenge +2) +"/"+challenges[stadtindex].length+")";
+        if (currentchallenge + 1 > challenges[stadtindex].length) {
             prefetcher.setAttribute("src", "img/" + stadtname[stadtindex] + "/" + challenges[stadtindex][currentchallenge + 1][0])
+        }
+        if(currentchallenge +2 > challenges[stadtindex].length){
+            buttonnext.innerHTML = "Beenden";
         }
     }
     function restart() {
@@ -232,7 +238,7 @@
         var a = Math.pow(Math.sin(deltaLat / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon / 2), 2);
         var c = 2 * Math.asin(Math.sqrt(a));
         var EARTH_RADIUS = 6371;
-        return Math.round(c * EARTH_RADIUS * 1000);
+        return Math.round((c * EARTH_RADIUS * 1000)/5)*5;
     }
     function toRadian(degree) {
         return degree * Math.PI / 180;
