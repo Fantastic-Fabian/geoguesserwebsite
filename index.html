@@ -43,7 +43,10 @@
 </body>
 <script>
     const DEBUGGING = false;
-
+    
+    window.onbeforeunload = function () {
+        return "Ihr Fortschritt geht verloren, wenn Sie die Seite verlassen. Sind Sie sicher?";
+    };
     //HTML-Elemente
     const myimage = document.getElementById("my-image");
     const abstandtext = document.getElementById("abstandtext");
@@ -101,18 +104,18 @@
     ["Heisiwald2.jpg", [51.391341, 6.989523]],
     ["Heisiwaldanfang.jpg", [51.393253, 6.986556]],
     ["VillaVue.jpg", [51.392172, 6.993479]],
-    ["AlteSchmiede.jpg", [51.412985,6.993425]],
-    ["Boltzplatz.jpg", [51.412498,6.988540]],
-    ["Edekabredeneyer.jpg", [51.412315,6.992606]],
-    ["Fussballplatz.jpg", [51.412677,6.989486]],
-    ["Grashofwald.jpg", [51.414374,6.992496]],
-    ["Kioskbredeneyer.jpg", [51.410305,6.993954]],
-    ["Klavierkunst.jpg", [51.412976,6.992565]],
-    ["Loco.jpg", [51.413242,6.994127]],
-    ["Officina.jpg", [51.411701,6.994131]],
-    ["PrinzAdolf.jpg", [51.415185,6.994550]],
-    ["Steillage.jpg", [51.402295,6.989734]],
-    ["Zahnarzt.jpg", [51.408963,6.993475]]];
+    ["AlteSchmiede.jpg", [51.412985, 6.993425]],
+    ["Boltzplatz.jpg", [51.412498, 6.988540]],
+    ["Edekabredeneyer.jpg", [51.412315, 6.992606]],
+    ["Fussballplatz.jpg", [51.412677, 6.989486]],
+    ["Grashofwald.jpg", [51.414374, 6.992496]],
+    ["Kioskbredeneyer.jpg", [51.410305, 6.993954]],
+    ["Klavierkunst.jpg", [51.412976, 6.992565]],
+    ["Loco.jpg", [51.413242, 6.994127]],
+    ["Officina.jpg", [51.411701, 6.994131]],
+    ["PrinzAdolf.jpg", [51.415185, 6.994550]],
+    ["Steillage.jpg", [51.402295, 6.989734]],
+    ["Zahnarzt.jpg", [51.408963, 6.993475]]];
 
     //["Heisiwald3.jpg", [51.393337, 6.987947]],
     var challenges = [challengeskarlsruhe, challengesessen];
@@ -164,8 +167,8 @@
             punkteaktualisieren()
             abstandtext.innerHTML = "Abstand:" + distance + "m";
             buttonnext.removeAttribute("disabled");
-            buttonnext.innerHTML = "Weiter (" + (currentchallenge +2) +"/"+challenges[stadtindex].length+")";
-            if(currentchallenge +2 > challenges[stadtindex].length){
+            buttonnext.innerHTML = "Weiter (" + (currentchallenge + 2) + "/" + challenges[stadtindex].length + ")";
+            if (currentchallenge + 2 > challenges[stadtindex].length) {
                 buttonnext.innerHTML = "Beenden"
             }
             notguessedyet = false;
@@ -192,7 +195,7 @@
         if (currentchallenge + 1 > challenges[stadtindex].length) {
             prefetcher.setAttribute("src", "img/" + stadtname[stadtindex] + "/" + challenges[stadtindex][currentchallenge + 1][0])
         }
-        if(currentchallenge +2 > challenges[stadtindex].length){
+        if (currentchallenge + 2 > challenges[stadtindex].length) {
             buttonnext.innerHTML = "&#128274; Beenden &#128274;";
         }
     }
@@ -241,7 +244,7 @@
         var a = Math.pow(Math.sin(deltaLat / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon / 2), 2);
         var c = 2 * Math.asin(Math.sqrt(a));
         var EARTH_RADIUS = 6371;
-        return Math.round((c * EARTH_RADIUS * 1000)/5)*5;
+        return Math.round((c * EARTH_RADIUS * 1000) / 5) * 5;
     }
     function toRadian(degree) {
         return degree * Math.PI / 180;
