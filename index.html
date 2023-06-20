@@ -20,7 +20,7 @@
     <div id="controls">
         <p id="punktetext">Punkte:0000</p>
         <p id="abstandtext"></p>
-        <button id="buttonnext" class="button" onclick="nextChallenge()">Überspringen</button>
+        <button id="buttonnext" class="button" onclick="nextChallenge()">&#128274; Weiter &#128274;</button>
     </div>
     <!-- The Modal -->
     <div id="popup" class="modal">
@@ -163,6 +163,7 @@
             totaldistance += distance;
             punkteaktualisieren()
             abstandtext.innerHTML = "Abstand:" + distance + "m";
+            buttonnext.removeAttribute("disabled");
             buttonnext.innerHTML = "Weiter (" + (currentchallenge +2) +"/"+challenges[stadtindex].length+")";
             if(currentchallenge +2 > challenges[stadtindex].length){
                 buttonnext.innerHTML = "Beenden"
@@ -186,12 +187,13 @@
         corrdscorr = challenges[stadtindex][currentchallenge][1];
         myimage.setAttribute('src', "img/" + stadtname[stadtindex] + "/" + challenges[stadtindex][currentchallenge][0]);
         abstandtext.innerHTML = "";
-        buttonnext.innerHTML = "Überspringen";
+        buttonnext.setAttribute("disabled", true);
+        buttonnext.innerHTML = "&#128274; Weiter &#128274;";
         if (currentchallenge + 1 > challenges[stadtindex].length) {
             prefetcher.setAttribute("src", "img/" + stadtname[stadtindex] + "/" + challenges[stadtindex][currentchallenge + 1][0])
         }
         if(currentchallenge +2 > challenges[stadtindex].length){
-            buttonnext.innerHTML = "Beenden";
+            buttonnext.innerHTML = "&#128274; Beenden &#128274;";
         }
     }
     function restart() {
@@ -201,6 +203,7 @@
         solvedchallenges = 0;
         punktetext.innerHTML = "Punkte:" + punkte;
         popup.style.display = "none";
+        updateChallenge();
     }
     //Punkte ausrechen mit distance
     function punkteaktualisieren() {

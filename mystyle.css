@@ -3,6 +3,7 @@
   --secondary-color: #d9d0c9;
   --tertiary-color: #add19e;
   --fontfamily: arial;
+  --disabeld-color: #777777;
 }
 
 body {
@@ -72,14 +73,18 @@ footer {
 }
 .button{
   background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
   border-color: var(--primary-color);
   border-style: solid;
   height: 40px;
 }
-.button:hover {
-  
+.button:hover:enabled {
   cursor:pointer;
+}
+button:disabled,
+button[disabled]{
+  cursor:not-allowed;
+  color: var(--disabeld-color);
+  border-color: var(--disabeld-color);
 }
 /* The Modal (background) */
 .modal {
