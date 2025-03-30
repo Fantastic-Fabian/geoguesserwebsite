@@ -16,7 +16,10 @@
 
 <body>
     <link rel="prefetch" id="prefetcher" href="img/test2.jpeg">
-    <h1 id="titletext">Geoguesser Karlsruhe</h1>
+    <div class="tooltip">
+        <h1 id="titletext" onClick="switchCity();">Geoguesser Karlsruhe</h1>
+        <span class="tooltiptext">Klick um Stadt zu wechseln</span>
+    </div>
     <div id="controls">
         <p id="punktetext">Punkte:0000</p>
         <p id="abstandtext"></p>
@@ -60,11 +63,21 @@
     //Pictures and Coords
     var stadtindex = 1;
     var stadtname = ["Karlsruhe", "Essen"];
-    var centercoords = [[49.0068901, 8.4036527], [51.412618, 6.982807]]
+    var centercoords = [[49.0178901, 8.4036527], [51.412618, 6.982807]]
+    var zoomlevel = [12.4,14]
 
-    var challengeskarlsruhe = [["test1.jpeg", [49.0, 8.4]],
-    ["test2.jpeg", [49.009, 8.399]],
-    ["test3.jpg", [49.006, 8.401]]];
+    var challengeskarlsruhe = [["WaldstadtOttoHahnGym.jpg", [49.032182, 8.443692]],
+    ["WaldstadtUfer.jpg", [49.039050, 8.450150]],
+    ["WaldstadtUfer2.jpg", [49.039552, 8.449937]],
+    ["WaldstadtUnterfuhrung.jpg", [49.032665, 8.454223 ]],
+    ["WaldstadtVerkehrsplatz.jpg", [49.038315, 8.446443]],
+    ["WaldstadtWiese.jpg", [49.039794, 8.450876]],
+    ["WaldstadtZentrum.jpg", [49.034966, 8.445297]],
+    ["WaldstadtBrucke.jpg", [49.032696, 8.450647]],
+    ["WaldstadtEdeka.jpg", [49.035465, 8.444452]],
+    ["WaldstadtFischer.jpg", [49.037784, 8.450702]],
+    ["WaldstadtHinterEdeka.jpg", [49.035706, 8.443896]],
+    ["WaldstadtHuhn.jpg", [49.032735, 8.447570]]];
 
     var challengesessen = [["Beckmannsbusch.jpg", [51.416100, 6.982488]],
     ["Buropark1.jpg", [51.414199, 6.978896]],
@@ -137,11 +150,12 @@
 
     //Stadt anpassen
     titletext.innerHTML = "Geoguesser " + stadtname[stadtindex];
+    
 
     // Creating map options
     var mapOptions = {
         center: centercoords[stadtindex],
-        zoom: 13
+        zoom: zoomlevel[stadtindex]
     }
 
     // Creating a map object
@@ -207,6 +221,15 @@
         punktetext.innerHTML = "Punkte:" + punkte;
         popup.style.display = "none";
         updateChallenge();
+    }
+    function switchCity(){
+        if(solvedchallenges == 0 || confirm("Ihr Fortschritt geht verloren, wenn Sie die Stadt wechseln. Sind Sie sicher?")){
+        stadtindex = (stadtindex+1) % stadtname.length;
+        titletext.innerHTML = "Geoguesser " + stadtname[stadtindex];
+        map.flyTo(centercoords[stadtindex], zoomlevel[stadtindex])
+        restart();
+        }
+
     }
     //Punkte ausrechen mit distance
     function punkteaktualisieren() {

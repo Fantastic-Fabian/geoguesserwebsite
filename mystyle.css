@@ -12,7 +12,7 @@ body {
 
 #controls,
 #map,
-#gallery, #buttonrestart {
+#gallery, #buttonrestart, .tooltip {
   width: 100%;
   max-width: 100vh;
   max-width: min(100vh, 85vw);
@@ -24,6 +24,45 @@ h1 {
   display: block;
   text-align: center;
   font-family: var(--fontfamily);
+}
+#titletext:hover{
+  cursor:pointer;
+  text-decoration: underline;
+}
+
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: white;
+  color: var(--primary-color);
+  font-family: var(--fontfamily);
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  width: 120px;
+  left:50%;
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
 }
 
 p,
